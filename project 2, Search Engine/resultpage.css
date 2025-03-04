@@ -1,0 +1,358 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: white;
+  --text-color: #202124;
+  --search-border: #dfe1e5;
+  --suggestion-hover: #9ec5ff;
+  --suggestion-text: #212121;
+  --icon-color: #9aa0a6;
+  --link-color: #1a0dab;
+  --link-visited: #609;
+  --url-color: #006621;
+  --divider-color: #e5e5e5;
+  --correction-color: #dd4b39;
+  --page-color: #ffffff;
+  --em-color: #9fdeb4;
+}
+
+[data-theme="dark"] {
+  --background-color: #202124;
+  --text-color: #ffffff;
+  --search-border: #5f6368;
+  --suggestion-hover: #303134;
+  --suggestion-text: #e8eaed;
+  --icon-color: #9aa0a6;
+  --link-color: #8ab4f8;
+  --link-visited: #c58af9;
+  --url-color: #9aa0a6;
+  --divider-color: #3c4043;
+  --correction-color: #f28b82;
+  --page-color: #ffffff;
+  --em-color: #006621;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  padding: 5px;
+  border-bottom: 1px solid var(--divider-color);
+  z-index: 100;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  font-size: 36px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 650;
+}
+
+.search-box {
+  flex-grow: 1;
+  max-width: 692px;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--search-border);
+  border-radius: 24px;
+  padding: 0 15px;
+  transition: all 0.3s ease;
+  background-color: var(--background-color);
+}
+
+.search-wrapper:hover,
+.search-wrapper:focus-within {
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+
+[data-theme="dark"] .search-wrapper:hover,
+[data-theme="dark"] .search-wrapper:focus-within {
+  border-color: #8ab4f8;
+}
+
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 8px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+  font-family: MTN, sans-serif;
+}
+
+.search-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.search-icon path {
+  fill: var(--icon-color);
+}
+
+.theme-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: var(--suggestion-hover);
+  color: var(--text-color);
+  border: 1px solid var(--search-border);
+  transition: all 0.3s ease;
+  font-family: EST, sans-serif;
+}
+
+.theme-toggle:hover {
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.search-stats {
+  padding: 8px 0;
+  color: var(--text-color);
+  font-size: 14px;
+  margin-left: 180px;
+}
+
+.correction-box {
+  margin: 0 180px 0px 180px;
+  padding: 8px 0;
+  display: none;
+}
+
+.correction-box.show {
+  display: block;
+}
+
+.correction-text {
+  color: var(--correction-color);
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.correction-suggestion {
+  color: var(--link-color);
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.correction-suggestion:hover {
+  text-decoration: underline;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  gap: 8px;
+  padding: 0 20px;
+}
+
+.pagination-item {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--link-color);
+  text-decoration: none;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pagination-item:hover {
+  background-color: var(--suggestion-hover);
+}
+
+.pagination-item.active {
+  background-color: var(--link-color);
+  color: var(--page-color);
+  font-weight: bold;
+}
+
+.pagination-nav {
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.pagination-nav.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-dots {
+  color: var(--text-color);
+  padding: 0 4px;
+}
+
+.results-container {
+  max-width: 652px;
+  margin: 0 auto;
+  margin-left: 160px;
+  padding: 0 20px;
+}
+
+.search-result {
+  margin-bottom: 15px;
+  padding: 10px 0;
+}
+
+.result-site-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.site-favicon {
+  width: 16px;
+  height: 16px;
+}
+
+.site-url {
+  color: var(--url-color);
+  font-size: 14px;
+  text-decoration: none;
+  font-family: EST, sans-serif;
+}
+
+.result-title {
+  color: var(--link-color);
+  font-size: 20px;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.result-title:visited {
+  color: var(--link-visited);
+}
+
+.result-title:hover {
+  text-decoration: underline;
+}
+
+.result-snippet {
+  color: var(--text-color);
+  font-size: 14px;
+  line-height: 1.58;
+  direction: rtl;
+
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  gap: 10px;
+}
+
+.pagination-item {
+  color: var(--link-color);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.pagination-item:hover {
+  background-color: var(--suggestion-hover);
+}
+
+.pagination-text {
+  color: var(--link-color);
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.suggestions {
+  position: absolute;
+  width: 100%;
+  max-width: 690px;
+  padding: 8px 0;
+  background: var(--background-color);
+  margin-top: 8px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(32, 33, 36, 0.28);
+  display: none;
+  z-index: 1000;
+  border: 1px solid var(--search-border);
+  overflow-x: hidden;
+}
+
+.suggestion-item {
+  padding: 12px 16px 12px 45px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--suggestion-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-item:hover {
+  background-color: var(--suggestion-hover);
+}
+
+.suggestions.show-suggestions {
+  display: block;
+}
+
+em{
+  background-color: var(--em-color);
+  font-style: normal;
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.search-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.search-button path {
+  fill: var(--icon-color);
+}

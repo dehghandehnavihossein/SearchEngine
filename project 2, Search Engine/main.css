@@ -1,0 +1,14 @@
+@font-face {
+    font-family: MTN; 
+    src: url("/fonts/MTNIrancell-Light.ttf"); 
+}
+
+@font-face {
+    font-family: EST; 
+    src: url("/fonts/Estedad-Regular.ttf"); 
+}
+
+
+body{
+    font-family: MTN, sans-serif;
+}
